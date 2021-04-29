@@ -15,7 +15,7 @@ def gen_list():
 		if data != "":
 			data = data.strip()
 			sql_list.append('''\
-INSERT INTO userblacklist(prefix,whitelist) VALUES ({})\
+INSERT INTO userblacklist(prefix,whitelist) VALUES {}\
 '''.format((data,0)))
 	return sql_list
 
