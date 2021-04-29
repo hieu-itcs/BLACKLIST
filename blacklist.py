@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
-# import paramiko
-# import psycopg2
+import paramiko
+import psycopg2
 
 vtfe = "10.10.99.222"
 mbnp = "10.10.99.130"
