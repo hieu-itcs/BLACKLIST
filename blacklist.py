@@ -7,7 +7,9 @@ vtfe = "10.10.99.222"
 mbnp = "10.10.99.130"
 vpb = "10.10.150.51"
 vpbbk = "10.10.150.52"
-topcall = "10.10.94.34"
+topcall1 = "10.10.94.34"
+topcall2 = "10.10.90.139"
+ops137 = "10.10.99.137"
 
 def gen_list():
 	sql_list = []
@@ -19,7 +21,7 @@ INSERT INTO userblacklist(prefix,whitelist) VALUES {}\
 '''.format((data,0)))
 	return sql_list
 
-for server in (vtfe,mbnp,vpb,vpbbk,topcall):
+for server in (vtfe,mbnp,vpb,vpbbk,topcall1,topcall2,ops137):
 	conn = psycopg2.connect(
 		database="opensips", 
 		user='opensips', 
