@@ -40,6 +40,6 @@ for server in (vtfe,mbnp,vpb,vpbbk,topcall1,topcall2,ops137):
 
 ssh = paramiko.SSHClient()
 ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-for server in (vtfe,mbnp,vpb,vpbbk,topcall):
+for server in (vtfe,mbnp,vpb,vpbbk,topcall1,topcall2,ops137):
 	ssh.connect(server, username="root", password="Pls@1234!")
 	stdin,stdout,stderr = ssh.exec_command("opensipsctl fifo reload_blacklist")
