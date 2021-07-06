@@ -23,24 +23,28 @@ INSERT INTO userblacklist(prefix,whitelist) VALUES {}\
 	return sql_list
 
 for server in (evn,vtfe,mbnp,vpb,vpbbk,topcall1,topcall3,ops137):
-	conn = psycopg2.connect(
-		database="opensips", 
-		user='opensips', 
-		password='opensipsrw', 
-		host=server, 
-		port= '5432'
-	)
-	conn.autocommit = True
-	cursor = conn.cursor()
+	try:
+		conn = psycopg2.connect(
+			database="opensips", 
+			user='opensips', 
+			password='opensipsrw', 
+			host=server, 
+			port= '5432'
+		)
+		conn.autocommit = True
+		cursor = conn.cursor()
 
-	for sql in gen_list():
-		cursor.execute(sql)
+		for sql in gen_list():
+			cursor.execute(sql)
 
-	conn.commit()
-	conn.close()
+		conn.commit()
+		conn.close()
+	except: pass
 
 ssh = paramiko.SSHClient()
 ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 for server in (evn,vtfe,mbnp,vpb,vpbbk,topcall1,topcall3,ops137):
-	ssh.connect(server, username="root", password="Pls@1234!")
-	stdin,stdout,stderr = ssh.exec_command("opensipsctl fifo reload_blacklist")
+	try:
+		ssh.connect(server, username="root", password="Pls@1234!")
+		stdin,stdout,stderr = ssh.exec_command("opensipsctl fifo reload_blacklist")
+	except: pass
